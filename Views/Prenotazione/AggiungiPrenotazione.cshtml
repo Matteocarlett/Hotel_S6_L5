@@ -1,0 +1,81 @@
+﻿@model Hotel.Models.Prenotazione
+
+@{
+    ViewBag.Title = "Aggiungi Prenotazione";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>Aggiungi Prenotazione</h2>
+
+    using (Html.BeginForm("AggiungiPrenotazione", "Prenotazione", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataPrenotazione)
+            @Html.TextBoxFor(model => model.DataPrenotazione, new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(model => model.DataPrenotazione)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Anno)
+            @Html.TextBoxFor(model => model.Anno, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Anno)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckIn)
+            @Html.TextBoxFor(model => model.CheckIn, new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(model => model.CheckIn)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckOut)
+            @Html.TextBoxFor(model => model.CheckOut, new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(model => model.CheckOut)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Caparra)
+            @Html.TextBoxFor(model => model.Caparra, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Caparra)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tariffa)
+            @Html.TextBoxFor(model => model.Tariffa, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Tariffa)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdCliente)
+            @Html.TextBoxFor(model => model.IdCliente, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdCliente)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SelezionePensione)
+            @Html.CheckBoxFor(model => model.SelezionePensione)
+            @Html.ValidationMessageFor(model => model.SelezionePensione)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Colazione)
+            @Html.CheckBoxFor(model => model.Colazione)
+            @Html.ValidationMessageFor(model => model.Colazione)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumeroStanza)
+            @Html.TextBoxFor(model => model.NumeroStanza, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NumeroStanza)
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Aggiungi</button>
+        </div>
+    }
+}
+else
+{
+    <p>Effettua ACCESSO come amministratore per avere accesso a questa pagina</p>
+}

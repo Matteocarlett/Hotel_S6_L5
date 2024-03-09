@@ -1,0 +1,42 @@
+﻿﻿﻿@model List<Hotel.Models.Servizi>
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+
+    <h2 class="mb-3">Lista Servizi</h2>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Numero Servizio</th>
+                <th scope="col">Id prenotazione</th>
+                <th scope="col">Servizio</th>
+                <th scope="col">Data</th>
+                <th scope="col">Quntità</th>
+                <th scope="col">Prezzo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var serv in Model)
+            {
+                <tr>
+                    <th scope="row">@serv.IdPrenotazione</th>
+                    <td>@serv.IdPrenotazione</td>
+                    <td>@serv.Servizio</td>
+                    <td>@serv.Data.ToString("dd/MM/yyyy")</td>
+                    <td>@serv.Quantità</td>
+                    <td>@String.Format("{0:0.##}", serv.Prezzo) €</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Aggiungi Servizio", "Add", "Servizi", null, new { @class = "btn btn-primary" })
+}
+else
+{
+    <p>Effettua ACCESSO come amministratore per avere accesso a questa pagina</p>
+}

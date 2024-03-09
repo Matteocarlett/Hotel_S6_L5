@@ -1,0 +1,63 @@
+﻿@model Hotel.Models.Cliente
+
+@{
+    ViewBag.Title = "Aggiungi Cliente";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>Aggiungi Cliente</h2>
+
+    using (Html.BeginForm("AggiungiCliente", "Cliente", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome)
+            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Nome)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cognome)
+            @Html.TextBoxFor(model => model.Cognome, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Cognome)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CodiceFiscale)
+            @Html.TextBoxFor(model => model.CodiceFiscale, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CodiceFiscale)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Città)
+            @Html.TextBoxFor(model => model.Città, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Città)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Provincia)
+            @Html.TextBoxFor(model => model.Provincia, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Provincia)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cellulare)
+            @Html.TextBoxFor(model => model.Cellulare, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Cellulare)
+        </div>
+
+        <div class=" form-group mt-3">
+            <button type="submit" class="btn btn-primary">Aggiungi</button>
+        </div>
+    }
+}
+else
+{
+    <p>Effettua ACCESSO come amministratore per avere accesso a questa pagina </p>
+}

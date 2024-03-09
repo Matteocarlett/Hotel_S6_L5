@@ -1,0 +1,72 @@
+﻿﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Hotel Boia Deh", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Prenotazioni", "ElencoPrenotazioni", "Prenotazione", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Clienti", "ElencoClienti", "Cliente", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Servizi Aggiuntivi", "Index", "Servizi", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                <div>
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                using (Html.BeginForm("Logout", "Login"))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="nav-link btn btn-dark p-0">Disconnetti</button>
+                                }
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Accedi", "Index", "Login", new { area = "" }, new { @class = "nav-link btn btn-dark  my-md-0 mx-md-2 p-0" })
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="container">
+                <p>&copy; @DateTime.Now.Year - Hotel Boia Deh</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Termini e Condizioni</a></li>
+                    <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                    <li class="list-inline-item"><a href="#">Contattaci</a></li>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

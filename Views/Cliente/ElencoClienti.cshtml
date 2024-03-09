@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "ElencoClienti";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>ElencoClienti</h2>
+
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Codice Fiscale</th>
+            <th>Città</th>
+            <th>Provincia</th>
+            <th>Email</th>
+            <th>Cellulare</th>
+
+        </tr>
+
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.Id</td>
+                <td>@cliente.Nome</td>
+                <td>@cliente.Cognome</td>
+                <td>@cliente.CodiceFiscale</td>
+                <td>@cliente.Città</td>
+                <td>@cliente.Provincia</td>
+                <td>@cliente.Email</td>
+                <td>@cliente.Cellulare</td>
+            </tr>
+        }
+    </table>
+    <div>
+        <a href="@Url.Action("AggiungiCliente", "Cliente")" class="btn btn-primary">Aggiungi Cliente</a>
+    </div>
+}
+else
+{
+    <p>Effettua ACCESSO come amministratore per avere accesso a questa pagina </p>
+}

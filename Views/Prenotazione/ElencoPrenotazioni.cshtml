@@ -1,0 +1,55 @@
+﻿
+@model List<Hotel.Models.Prenotazione>
+
+@{
+    ViewBag.Title = "ElencoPrenotazioni";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="d-flex justify-content-between">
+        <h2>Elenco Prenotazioni</h2>
+        <div class="form-group">
+           <div class="form-group">
+               @Html.ActionLink("Aggiungi Prenotazione", "AggiungiPrenotazione", "Prenotazione", null, new { @class = "btn btn-primary" })
+           </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Data Prenotazione</th>
+            <th>Anno</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Caparra</th>
+            <th>Tariffa</th>
+            <th>ID Cliente</th>
+            <th>Selezione Pensione</th>
+            <th>Colazione</th>
+            <th>Numero Stanza</th>
+        </tr>
+
+        @foreach (var prenotazione in Model)
+        {
+            <tr>
+                <td>@prenotazione.Id</td>
+                <td>@prenotazione.DataPrenotazione.ToShortDateString()</td>
+                <td>@prenotazione.Anno</td>
+                <td>@prenotazione.CheckIn.ToShortDateString()</td>
+                <td>@prenotazione.CheckOut.ToShortDateString()</td>
+                <td>@prenotazione.Caparra €</td>
+                <td>@prenotazione.Tariffa €</td>
+                <td>@prenotazione.IdCliente</td>
+                <td>@(prenotazione.SelezionePensione ? "Pensione Completa" : "Mezza Pensione")</td>
+                <td>@(prenotazione.Colazione ? "Si" : "No")</td>
+                <td>@prenotazione.NumeroStanza</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Effettua ACCESSO come amministratore per avere accesso a questa pagina </p>
+}
